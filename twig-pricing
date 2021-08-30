@@ -1,0 +1,13 @@
+{# Manipulate numbers to add number format depending on the output number #}
+
+{% if ',' in content.price['#items'].value %}
+  {% set price %}
+    {{ content.price['#items'].value|replace(',', '.')|number_format(2, ',', '.') }}
+  {% endset %}
+{% else %}
+  {% set price %}
+    {{ content.price['#items'].value|number_format(0, '', '.') }}
+  {% endset %}
+{% endif %}
+
+{{ price }}<span>€</span>
